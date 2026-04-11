@@ -1,7 +1,9 @@
 # Bloco de Notas Avançado
 
 Aplicativo desktop para Windows com design moderno, construído com **Tauri v2**.  
-Edite e organize notas em Markdown — arquivos `.md` reais no seu sistema de arquivos.
+Edite e organize notas em Markdown — arquivos `.md` reais no seu sistema de arquivos. 
+<img width="1279" height="799" alt="Captura de tela 2026-04-11 124620" src="https://github.com/user-attachments/assets/5063ad8b-5639-4df7-93f8-9a34a6cdfb35" />
+
 
 ---
 
