@@ -2,7 +2,8 @@
 
 Aplicativo desktop para Windows com design moderno, construído com **Tauri v2**.  
 Edite e organize notas em Markdown — arquivos `.md` reais no seu sistema de arquivos. 
-<img width="1281" height="799" alt="InnkPad" src="https://github.com/user-attachments/assets/1afb3322-3f77-429f-baef-c0fb2611daeb" />
+<img width="1279" height="798" alt="Inkpad" src="https://github.com/user-attachments/assets/3ada72d7-e91d-4bfc-b493-5881f123a4db" />
+
 
 ---
 
