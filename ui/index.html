@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bloco de Notas Avançado</title>
+  <title>Inkpad</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,19 +12,15 @@
 <body>
 
   <!-- ═══════════════ SIDEBAR ═══════════════ -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-brand">
         <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14,2 14,8 20,8"/>
-          <line x1="16" y1="13" x2="8" y2="13"/>
-          <line x1="16" y1="17" x2="8" y2="17"/>
-          <line x1="10" y1="9" x2="8" y2="9"/>
+          <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
         </svg>
-        <span>Notas</span>
+        <span>Inkpad</span>
       </div>
-      <button class="icon-btn" id="btn-settings" title="Configurações (pasta das notas)">
+      <button class="icon-btn" id="btn-settings" title="Configurações">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="3"/>
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -34,22 +30,20 @@
 
     <button class="btn-new-note" id="btn-new-note">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19"/>
-        <line x1="5" y1="12" x2="19" y2="12"/>
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
       </svg>
       Nova Nota
     </button>
 
     <div class="search-wrapper">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
       <input type="text" id="search-input" placeholder="Buscar notas..." autocomplete="off" spellcheck="false">
     </div>
 
     <div class="note-list" id="note-list">
-      <div class="list-placeholder">Nenhuma nota encontrada</div>
+      <div class="list-placeholder">Nenhuma nota ainda</div>
     </div>
 
     <div class="sidebar-footer">
@@ -66,45 +60,68 @@
   <!-- ═══════════════ ÁREA PRINCIPAL ═══════════════ -->
   <main class="main-content">
 
-    <!-- Estado vazio -->
-    <div class="empty-state" id="empty-state">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-        <polyline points="14,2 14,8 20,8"/>
-        <line x1="16" y1="13" x2="8" y2="13"/>
-        <line x1="16" y1="17" x2="8" y2="17"/>
-        <line x1="10" y1="9" x2="8" y2="9"/>
-      </svg>
-      <h2>Nenhuma nota selecionada</h2>
-      <p>Selecione uma nota na sidebar ou crie uma nova para começar.</p>
-      <button class="btn-primary" id="btn-new-note-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="12" y1="5" x2="12" y2="19"/>
-          <line x1="5" y1="12" x2="19" y2="12"/>
-        </svg>
-        Nova Nota
-      </button>
+    <!-- ── Tela de boas-vindas ── -->
+    <div class="welcome-screen" id="empty-state">
+      <div class="welcome-inner">
+
+        <div class="welcome-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          <h1>Inkpad</h1>
+        </div>
+        <p class="welcome-tagline">Suas notas em Markdown, sempre à mão.</p>
+
+        <!-- Última nota -->
+        <div class="welcome-last" id="welcome-last" style="display:none">
+          <span class="welcome-last-label">Continuar de onde parou</span>
+          <button class="welcome-last-btn" id="btn-open-last">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            <span id="last-note-name">nota</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Atalhos -->
+        <div class="welcome-shortcuts">
+          <p class="shortcuts-title">Atalhos rápidos</p>
+          <div class="shortcuts-grid">
+            <div class="shortcut-row"><kbd>Ctrl</kbd><kbd>N</kbd><span>Nova nota</span></div>
+            <div class="shortcut-row"><kbd>Ctrl</kbd><kbd>S</kbd><span>Salvar</span></div>
+            <div class="shortcut-row"><kbd>Ctrl</kbd><kbd>P</kbd><span>Preview</span></div>
+            <div class="shortcut-row"><kbd>Ctrl</kbd><kbd>F</kbd><span>Buscar</span></div>
+            <div class="shortcut-row"><kbd>Ctrl</kbd><kbd>B</kbd><span>Negrito</span></div>
+            <div class="shortcut-row"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>F</kbd><span>Modo foco</span></div>
+          </div>
+        </div>
+
+        <button class="btn-primary btn-lg" id="btn-new-note-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Nova Nota
+        </button>
+
+      </div>
     </div>
 
-    <!-- Área do editor -->
+    <!-- ── Editor ── -->
     <div class="editor-area" id="editor-area">
 
       <div class="editor-header">
-        <input
-          type="text"
-          id="note-title"
-          class="note-title-input"
-          placeholder="Título da nota"
-          spellcheck="false"
-          maxlength="100"
-        >
+        <input type="text" id="note-title" class="note-title-input"
+          placeholder="Título da nota" spellcheck="false" maxlength="100">
         <div class="editor-actions">
           <span class="save-status" id="save-status"></span>
           <button class="btn-icon-text" id="btn-save" title="Salvar (Ctrl+S)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-              <polyline points="17,21 17,13 7,13 7,21"/>
-              <polyline points="7,3 7,8 15,8"/>
+              <polyline points="17,21 17,13 7,13 7,21"/><polyline points="7,3 7,8 15,8"/>
             </svg>
             Salvar
           </button>
@@ -112,38 +129,77 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="3,6 5,6 21,6"/>
               <path d="m19 6-.867 12.142A2 2 0 0 1 16.14 20H7.86a2 2 0 0 1-1.993-1.858L5 6m5 0V4h4v2"/>
-              <line x1="10" y1="11" x2="10" y2="17"/>
-              <line x1="14" y1="11" x2="14" y2="17"/>
+              <line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
             </svg>
           </button>
         </div>
       </div>
 
+      <!-- Tabs + toolbar -->
       <div class="tabs-bar">
         <button class="tab active" id="tab-editor" data-tab="editor">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="4,7 4,4 20,4 20,7"/>
-            <line x1="9" y1="20" x2="15" y2="20"/>
-            <line x1="12" y1="4" x2="12" y2="20"/>
+            <polyline points="4,7 4,4 20,4 20,7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>
           </svg>
           Editor
         </button>
         <button class="tab" id="tab-preview" data-tab="preview">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-            <circle cx="12" cy="12" r="3"/>
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
           </svg>
           Preview
         </button>
+        <div class="tabs-spacer"></div>
+        <!-- Modo foco -->
+        <button class="icon-btn tab-action" id="btn-focus" title="Modo foco (Ctrl+Shift+F)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Toolbar de formatação -->
+      <div class="format-toolbar" id="format-toolbar">
+        <button class="fmt-btn fmt-bold" data-fmt="bold" title="Negrito (Ctrl+B)"><b>B</b></button>
+        <button class="fmt-btn fmt-italic" data-fmt="italic" title="Itálico (Ctrl+I)"><i>I</i></button>
+        <button class="fmt-btn fmt-strike" data-fmt="strike" title="Tachado"><s>S</s></button>
+        <div class="fmt-sep"></div>
+        <button class="fmt-btn" data-fmt="h1" title="Título 1">H1</button>
+        <button class="fmt-btn" data-fmt="h2" title="Título 2">H2</button>
+        <button class="fmt-btn" data-fmt="h3" title="Título 3">H3</button>
+        <div class="fmt-sep"></div>
+        <button class="fmt-btn fmt-code" data-fmt="code" title="Código inline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/>
+          </svg>
+        </button>
+        <button class="fmt-btn" data-fmt="codeblock" title="Bloco de código">```</button>
+        <button class="fmt-btn" data-fmt="quote" title="Citação">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+            <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+          </svg>
+        </button>
+        <div class="fmt-sep"></div>
+        <button class="fmt-btn" data-fmt="ul" title="Lista">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+        </button>
+        <button class="fmt-btn" data-fmt="ol" title="Lista numerada">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/>
+            <path d="M4 6h1v4"/><path d="M4 10h2"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/>
+          </svg>
+        </button>
+        <button class="fmt-btn" data-fmt="hr" title="Separador">—</button>
       </div>
 
       <div class="editor-body">
-        <textarea
-          id="editor"
-          placeholder="Comece a escrever em Markdown...&#10;&#10;Use # para títulos, **negrito**, *itálico*, `código`, etc."
-          spellcheck="false"
-          autocomplete="off"
-        ></textarea>
+        <textarea id="editor"
+          placeholder="Comece a escrever em Markdown...&#10;&#10;# Título&#10;**negrito**  *itálico*  `código`"
+          spellcheck="false" autocomplete="off"></textarea>
         <div id="preview" class="preview-content" style="display:none;"></div>
       </div>
 
@@ -160,7 +216,6 @@
 
   <!-- ═══════════════ MODAIS ═══════════════ -->
 
-  <!-- Modal: Nova Nota -->
   <div class="modal-overlay" id="modal-new-note">
     <div class="modal">
       <div class="modal-header">
@@ -171,7 +226,7 @@
           </svg>
         </button>
       </div>
-      <p class="modal-desc">Digite o nome da nota (sem extensão .md)</p>
+      <p class="modal-desc">Nome do arquivo (sem extensão .md)</p>
       <input type="text" id="input-new-note" placeholder="ex: reunião-semanal" maxlength="100" autocomplete="off" spellcheck="false">
       <div class="modal-footer">
         <button class="btn-ghost" data-close="modal-new-note">Cancelar</button>
@@ -180,7 +235,6 @@
     </div>
   </div>
 
-  <!-- Modal: Configurações -->
   <div class="modal-overlay" id="modal-settings">
     <div class="modal">
       <div class="modal-header">
@@ -201,7 +255,6 @@
     </div>
   </div>
 
-  <!-- Modal: Confirmar exclusão -->
   <div class="modal-overlay" id="modal-delete">
     <div class="modal modal-sm">
       <div class="modal-header">
@@ -215,7 +268,6 @@
     </div>
   </div>
 
-  <!-- Toast container -->
   <div class="toast-container" id="toast-container"></div>
 
   <script src="src/app.js"></script>
