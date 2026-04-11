@@ -1,4 +1,4 @@
-# Bloco de Notas Avançado
+# Inkpad - Bloco de Notas Avançado
 
 Aplicativo desktop para Windows com design moderno, construído com **Tauri v2**.  
 Edite e organize notas em Markdown — arquivos `.md` reais no seu sistema de arquivos. 
